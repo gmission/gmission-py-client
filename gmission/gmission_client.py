@@ -4,7 +4,7 @@ import json
 
 __author__ = 'rui'
 from datetime import datetime
-from http_client import get, post, post_image
+from http_client import get, post, post_image, put
 from logbook import Logger
 
 API_HOST = 'http://127.0.0.1:8080/'
@@ -45,6 +45,14 @@ class GmissionClient(object):
 
     def user_verify_email(self, hash_id):
         get(self.api_host + 'user/email_verify/' + hash_id)
+
+
+    def update(self, entity, id, data):
+        response = put(self.api_host + 'rest/%s/%d'%(entity,id), json=data, token=self.token)
+        if 'id' in response:
+            print 'Campaign created id', response.get('id', 0)
+            return response
+
 
     def create_campaign(self, title, desp=""):
         response = post(self.api_host + 'rest/campaign', json={'title': title, 'brief':desp}, token=self.token)

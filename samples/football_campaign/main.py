@@ -81,20 +81,21 @@ def main():
     client = Client('http://lccpu3.cse.ust.hk/gmission-dev/')
     client.user_auth(USERNAME, PASSWORD)
     campaign = client.get_or_create_campaign('Premier League Prediction', "Try to predict the result of future Premier League matches. See if you are a real football fan!")
-    client.assign_user_to_campaign(campaign.id, CAMPAIGN_USER_ROLE_OWNER)
-    for (match_day, date, matches) in PremierMatchesIter():
-        for match in matches:
-            title = 'Day %d: %s'%(match_day, match)
-            desp = 'Try to predict the result of the Premier League match: [%s] on %s, match day %d.'%(match, date, match_day)
-            campaign.create_selection_hit(title, desp, ["Home Win","Away Win"," Draw"] )
-
-    campaign = client.get_or_create_campaign('La Liga Prediction', "Try to predict the result of future La Liga matches. See if you are a real football fan!")
-    client.assign_user_to_campaign(campaign.id, CAMPAIGN_USER_ROLE_OWNER)
-    for (match_day, date, matches) in LigaMatchesIter():
-        for match in matches:
-            title = 'Day %d: %s'%(match_day, match)
-            desp = 'Try to predict the result of the La Liga match: [%s] on %s, match day %d.'%(match, date, match_day)
-            campaign.create_selection_hit(title, desp, ["Home Win","Away Win"," Draw"] )
+    client.update('campaign', campaign.id, {"status":"closed"})
+    # client.assign_user_to_campaign(campaign.id, CAMPAIGN_USER_ROLE_OWNER)
+    # for (match_day, date, matches) in PremierMatchesIter():
+    #     for match in matches:
+    #         title = 'Day %d: %s'%(match_day, match)
+    #         desp = 'Try to predict the result of the Premier League match: [%s] on %s, match day %d.'%(match, date, match_day)
+    #         campaign.create_selection_hit(title, desp, ["Home Win","Away Win"," Draw"] )
+    #
+    # campaign = client.get_or_create_campaign('La Liga Prediction', "Try to predict the result of future La Liga matches. See if you are a real football fan!")
+    # client.assign_user_to_campaign(campaign.id, CAMPAIGN_USER_ROLE_OWNER)
+    # for (match_day, date, matches) in LigaMatchesIter():
+    #     for match in matches:
+    #         title = 'Day %d: %s'%(match_day, match)
+    #         desp = 'Try to predict the result of the La Liga match: [%s] on %s, match day %d.'%(match, date, match_day)
+    #         campaign.create_selection_hit(title, desp, ["Home Win","Away Win"," Draw"] )
 
 
 
