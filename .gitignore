@@ -51,10 +51,6 @@ docs/_build/
 # PyBuilder
 target/
 
-
-matlab-workspace
-export-files
-
 .idea
 *.jpg
 *.png
@@ -64,7 +60,3 @@ export-files
 *.3gp
 *.pid
 .DS_Store
-.pyc
-workspace.xml
-gmission_client.pyc
-.idea/
